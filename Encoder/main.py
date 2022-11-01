@@ -7,9 +7,4 @@ sc = screen(ho)
 sc.openScreen()
 
 
-
-
-
-#print(screen.globalSelf)
-
     

@@ -45,15 +45,7 @@ class screen():
         self.ho.setUser(self.x,self.y)
         self.ho.hashing()
         self.ho.userControl()
-        
-    
-    
-        
-# PascalCase
-# camelCase
-# snake_case
-# shish-kebab-case
-# UPPER_PASCAL_CASE
+
     
         
     
