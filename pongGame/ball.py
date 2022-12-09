@@ -17,4 +17,10 @@ class Ball:
         self.x += self.x_vel
         self.y += self.y_vel
     
+    def reset(self):
+        self.x = self.original_x
+        self.y = self.original_y
+        self.y_vel = 0
+        self.x_vel *= -1
+    
     

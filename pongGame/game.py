@@ -35,24 +35,24 @@ class Game:
     
     def move_paddle(self,keys):
         if keys[pygame.K_w] and self.left_paddle.y - self.left_paddle.VEL >= 0:
-            self.left_paddle.move_LR(up=True)
+            self.left_paddle.move(horizontal=False, up=True)
         if keys[pygame.K_s] and self.left_paddle.y + self.left_paddle.VEL + self.left_paddle.HEIGHT <= self.win_height:
-            self.left_paddle.move_LR(up=False)
+            self.left_paddle.move(horizontal=False, up=False)
         
         if keys[pygame.K_UP] and self.right_paddle.y - self.right_paddle.VEL >= 0:
-            self.right_paddle.move_LR(up=True)
+            self.right_paddle.move(horizontal=False, up=True)
         if keys[pygame.K_DOWN] and self.right_paddle.y + self.right_paddle.VEL + self.right_paddle.HEIGHT <= self.win_height:
-            self.right_paddle.move_LR(up=False)
+            self.right_paddle.move(horizontal=False, up=False)
         
         if keys[pygame.K_d] and self.top_paddle.x + self.top_paddle.VEL + self.top_paddle.WIDHT <= self.win_widht:
-            self.top_paddle.move_TB(right=True)
+            self.top_paddle.move(horizontal=True, right=True)
         if keys[pygame.K_a] and self.top_paddle.x - self.top_paddle.VEL >= 0:
-            self.top_paddle.move_TB(right=False)
+            self.top_paddle.move(horizontal=True, right=False)
             
         if keys[pygame.K_RIGHT] and self.bottom_paddle.x + self.bottom_paddle.VEL + self.bottom_paddle.WIDHT <= self.win_widht:
-            self.bottom_paddle.move_TB(right=True)
+            self.bottom_paddle.move(horizontal=True, right=True)
         if keys[pygame.K_LEFT] and self.bottom_paddle.x - self.bottom_paddle.VEL >= 0:
-            self.bottom_paddle.move_TB(right=False)
+            self.bottom_paddle.move(horizontal=True, right=False)
          
     def handle_collision(self):
         # currently only works for right and left paddles

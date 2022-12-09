@@ -16,14 +16,19 @@ class Paddle:
     def draw(self, win):
         pygame.draw.rect(win, self.COLOR, (self.x, self.y, self.WIDHT, self.HEIGHT))
         
+    def move(self, horizontal=True, up=None, right=None):
+        if horizontal:# checks if we move horizontally
+            if right:
+                self.x += self.VEL
+            else:
+                self.x -= self.VEL
+        else:
+            if up:
+                self.y -= self.VEL
+            else:
+                self.y += self.VEL
     
-    def move_LR(self, up=True):
-        if up:
-            self.y -= self.VEL
-        else:
-            self.y += self.VEL
-    def move_TB(self, right=True):
-        if right:
-            self.x += self.VEL
-        else:
-            self.x -= self.VEL
+    def reset(self):
+        self.x = self.original_x
+        self.y = self.original_y         
+    
