@@ -31,7 +31,7 @@ class PongGame:
         
 
 def main():
-   widht, height = 600, 600
+   widht, height = 900, 600
    win = pygame.display.set_mode((widht,height))# creates a window
    pygame.display.set_caption("PONG")
    pong = PongGame(win, widht, height) # creating a game
