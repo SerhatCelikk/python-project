@@ -53,15 +53,20 @@ class Game:
             self.bottom_paddle.move(horizontal=True, right=True)
         if keys[pygame.K_LEFT] and self.bottom_paddle.x - self.bottom_paddle.VEL >= 0:
             self.bottom_paddle.move(horizontal=True, right=False)
-         
+    
+    def check_overrun(self):# checks for hits against the wall
+        if self.ball.x + self.ball.RADIUS >= self.win_widht:# if it hits right
+            self.ball.x_vel *= -1
+        elif self.ball.x - self.ball.RADIUS <= 0:# if hits left
+            self.ball.x_vel *= -1
+        elif self.ball.y + self.ball.RADIUS >= self.win_height:# if it hits bottom 
+            self.ball.y_vel *= -1
+        elif self.ball.y - self.ball.RADIUS <= 0:# if it hits top
+            self.ball.y_vel *= -1
+            
     def handle_collision(self):
-        # currently only works for right and left paddles
-        # and may have bugs that need to be fixed
-        if self.ball.y + self.ball.RADIUS >= self.win_height:
-            self.ball.y_vel *= -1
-        elif self.ball.y - self.ball.RADIUS <= 0:
-            self.ball.y_vel *= -1
-
+        self.check_overrun()
+        
         if self.ball.x_vel < 0:
             if self.ball.y >= self.left_paddle.y and self.ball.y <= self.left_paddle.y + self.left_paddle.HEIGHT:
                 if self.ball.x - self.ball.RADIUS <= self.left_paddle.x + self.left_paddle.WIDHT:
@@ -73,7 +78,7 @@ class Game:
                     y_vel = difference_in_y / reduction_factor
                     self.ball.y_vel = -1 * y_vel
 
-        else:
+        elif self.ball.x_vel > 0:
             if self.ball.y >= self.right_paddle.y and self.ball.y <= self.right_paddle.y + self.right_paddle.HEIGHT:
                 if self.ball.x + self.ball.RADIUS >= self.right_paddle.x:
                     self.ball.x_vel *= -1
@@ -83,3 +88,25 @@ class Game:
                     reduction_factor = (self.right_paddle.HEIGHT / 2) / self.ball.MAX_VEL
                     y_vel = difference_in_y / reduction_factor
                     self.ball.y_vel = -1 * y_vel
+        
+        elif self.ball.y_vel < 0 :
+            if self.ball.x >= self.top_paddle.x and self.ball.x <= self.top_paddle.x + self.top_paddle.WIDHT:
+                if self.ball.y - self.ball.RADIUS <= self.top_paddle.y + self.top_paddle.HEIGHT:
+                    self.ball.y_vel *= -1
+                    
+                    middle_x = self.top_paddle.x + self.top_paddle.WIDHT / 2
+                    difference_in_x = middle_x - self.ball.x
+                    reduction_factor = (self.top_paddle.WIDHT / 2) / self.ball.MAX_VEL
+                    x_vel = difference_in_x / reduction_factor
+                    self.ball.x_vel *= x_vel
+        
+        elif self.ball.y_vel > 0:
+            if self.ball.x >= self.bottom_paddle.x and self.ball.x <= self.bottom_paddle.x + self.bottom_paddle.WIDHT:
+                if self.ball.y + self.ball.RADIUS >= self.bottom_paddle.y:
+                    self.ball.x_vel *= -1
+                    
+                    middle_x = self.bottom_paddle.x + self.bottom_paddle.WIDHT / 2
+                    difference_in_x = middle_x - self.ball.x
+                    reduction_factor = (self.bottom_paddle.WIDHT / 2) / self.ball.MAX_VEL
+                    x_vel = difference_in_x / reduction_factor
+                    self.ball.x_vel *= x_vel

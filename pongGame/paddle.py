@@ -31,4 +31,3 @@ class Paddle:
     def reset(self):
         self.x = self.original_x
         self.y = self.original_y         
-    

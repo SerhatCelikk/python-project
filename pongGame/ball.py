@@ -22,5 +22,3 @@ class Ball:
         self.y = self.original_y
         self.y_vel = 0
         self.x_vel *= -1
-    
-    
