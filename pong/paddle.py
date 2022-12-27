@@ -1,21 +1,22 @@
 import pygame
 
+
 class Paddle:
     VEL = 4
-    COLOR = (255, 255, 255)#white
-    WIDHT = 20
+    WIDTH = 20
     HEIGHT = 100
-    
-    def __init__(self, x, y, widht, height):
+
+    def __init__(self, x, y, width, height):
         self.x = self.original_x = x
         self.y = self.original_y = y
-        self.WIDHT = widht
+        self.WIDTH = width
         self.HEIGHT = height
-        
-    
+
     def draw(self, win):
-        pygame.draw.rect(win, self.COLOR, (self.x, self.y, self.WIDHT, self.HEIGHT))
+        pygame.draw.rect(
+            win, (255, 255, 255), (self.x, self.y, self.WIDTH, self.HEIGHT))
         
+
     def move(self, horizontal=True, up=None, right=None):
         if horizontal:# checks if we move horizontally
             if right:
@@ -27,7 +28,7 @@ class Paddle:
                 self.y -= self.VEL
             else:
                 self.y += self.VEL
-    
+
     def reset(self):
         self.x = self.original_x
-        self.y = self.original_y         
+        self.y = self.original_y
