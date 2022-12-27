@@ -138,13 +138,13 @@ def eval_genomes(genomes, config):
             genome2.fitness = 0 if genome2.fitness == None else genome2.fitness
             pong = PongGame(win, width, height)
 
-            force_quit = pong.train_ai(genome1, genome2, config, draw=True)
+            force_quit = pong.train_ai(genome1, genome2, genome3, genome4,config, draw=True)
             if force_quit:
                 quit()
 
 
 def run_neat(config):
-    p = neat.Checkpointer.restore_checkpoint('neat-checkpoint-85')
+    #p = neat.Checkpointer.restore_checkpoint('neat-checkpoint-85')
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
