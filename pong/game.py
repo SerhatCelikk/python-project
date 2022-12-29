@@ -45,7 +45,7 @@ class Game:
         self.right_score = 0
         self.top_score = 0
         self.bottom_score = 0
-        self.left_hits = 0
+        self.left_hits = 0 
         self.right_hits = 0
         self.top_hits = 0
         self.bottom_hits = 0
